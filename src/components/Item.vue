@@ -5,10 +5,14 @@
 		:class="{'high-light':isEnter}"
     >
         <label>
-            <input type="checkbox" v-model="checked" @change="update"/>
+            <input type="checkbox" :checked="this.todo.done" @change="update"/>
             <span>{{todo.name}}</span>
         </label>
-        <button class="btn btn-danger" :style="{display:isEnter? 'block':'none'}">删除</button>
+        <button 
+			class="btn btn-danger" 
+			:style="{display:isEnter? 'block':'none'}"
+			@click="deleteT(index)"
+		>删除</button>
     </li>
 
 </template>
@@ -17,19 +21,25 @@
     export default {
         name:'Item',
         // 要写引号
-        props: ["todo","updateTodo","updateTodoIndex","index"],
+        props: ["todo","updateTodo","updateTodoIndex","index","deleteTodo"],
         data(){
             return {
                 isEnter:false, // 标识鼠标是否移入
-				checked:this.todo.done
             }
         },
 		methods: {
-			update(){
+			// 通知App更新todos
+			update(event){
 				//通知App去更新todos——用id去更新
 				// this.updateTodo(this.todo.id,this.checked)
 				//通知App去更新todos——用index去更新
-				this.updateTodoIndex(this.index,this.checked)
+				this.updateTodoIndex(this.index,event.target.checked)
+			},
+			// 用于index去删除todo
+			deleteT(index){
+				if(confirm("确定删除吗")){
+					this.deleteTodo(index)
+				}
 			}
 		},
     }

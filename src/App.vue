@@ -3,8 +3,8 @@
 		<div class="todo-container">
 			<div class="todo-wrap">
 				<Header :addTodo="addTodo"/>
-				<List :todos='todos' :updateTodo="updateTodo" :updateTodoIndex="updateTodoIndex"/>
-				<Footer/>
+				<List :todos='todos' :updateTodo="updateTodo" :updateTodoIndex="updateTodoIndex" :deleteTodo="deleteTodo"/>
+				<Footer :todos="todos" :updateAll="updateAll" :clearAll="clearAll"/>
 			</div>
 		</div>
 	</div>
@@ -46,6 +46,18 @@
 			// 更新一个todo，用index去更新
 			updateTodoIndex(index,done){
 				this.todos[index].done = done
+			},
+			// 删除一个todo，用index去删除
+			deleteTodo(index){
+				this.todos.splice(index,1)
+			},
+			// 全选 or 全部选
+			updateAll(done){
+				this.todos=this.todos.map(todo=>({...todo,done}))
+			},
+			// 清除所有已完成
+			clearAll(){
+				this.todos=this.todos.filter(todoObj=>!todoObj.done)
 			}
 		}
 	}

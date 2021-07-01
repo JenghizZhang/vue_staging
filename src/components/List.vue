@@ -9,6 +9,7 @@
                 :index="index"
                 :updateTodo="updateTodo"
                 :updateTodoIndex="updateTodoIndex"
+                :deleteTodo="deleteTodo"
             />
         </ul>
     </div>
@@ -25,7 +26,8 @@
                 isRequired:true,
             },
             updateTodo: Function,
-            updateTodoIndex: Function
+            updateTodoIndex: Function,
+            deleteTodo: Function
         }
     }
 </script>

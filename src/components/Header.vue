@@ -31,6 +31,7 @@
                     this.addTodo(todoObj)
                     // 清空输入
                     event.target.value=""
+                    this.name=""
                 }
             }
         },
