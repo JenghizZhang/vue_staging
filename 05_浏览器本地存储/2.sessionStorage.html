@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <h1>sessionStorage</h1>
+    <button id="btn">保存数据</button>
+    <button id="btn2">读取数据</button>
+    <button id="btn3">删除数据</button>
+    <button id="btn4">删除数据</button>
+
+    <script>
+        const btn = document.getElementById('btn')
+        const btn2 = document.getElementById('btn2')
+        const btn3 = document.getElementById('btn3')
+        const btn4 = document.getElementById('btn4')
+        const arr = [1,2,3,4,5]
+        const obj = {name:'老刘',age:19}
+
+        btn.onclick = () => {
+            window.sessionStorage.setItem('name',JSON.stringify(obj))
+        }
+        btn2.onclick = () => {
+            try {
+                const result = JSON.parse(sessionStorage.getItem('name'))
+                console.log(result);
+            } catch (error) {
+                console.log(error.message);
+                sessionStorage.removeItem('name')
+            }
+        }
+        btn3.onclick = () => {
+            sessionStorage.removeItem('name')
+        }
+        btn4.onclick = () => {
+            sessionStorage.clear()
+        }
+    </script>
+</body>
+</html>
