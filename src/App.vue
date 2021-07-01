@@ -1,22 +1,97 @@
 <template>
-    <div>
-        <h1 class="welcome">欢迎学习前端最火的框架</h1>
-        <HelloWorld />
-    </div>
+	<div>
+		<div class="todo-container">
+			<div class="todo-wrap">
+				<Header :addTodo="addTodo"/>
+				<List :todos='todos' :updateTodo="updateTodo" :updateTodoIndex="updateTodoIndex"/>
+				<Footer/>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-    // 引入HelloWorld组件
-    import HelloWorld from './components/HelloWorld.vue'
-    export default {
-        components:{
-            HelloWorld
-        }
-    }
+	//引入组件
+	import Header from './components/Header.vue'
+	import List from './components/List.vue'
+	import Footer from './components/Footer.vue'
+	export default {
+		components: { Header, List, Footer }, //注册组件
+		name:'App',
+		data(){
+			return {
+				todos: [
+					{id:'001',name:'抽烟',done:true},
+					{id:'002',name:'喝酒',done:false},
+					{id:'003',name:'烫头',done:true},
+					{id:'004',name:'写代码',done:false},
+				]
+			}
+		},
+		methods:{
+			// 添加一个todo的方法
+			addTodo(todoObj){
+				// 通过push方法更新todos
+				this.todos.unshift(todoObj)
+			},
+			// 更新一个todo，用id去更新
+			updateTodo(id,done){
+				this.todos = this.todos.map(todoObj=>{
+					if(todoObj.id===id){
+						return {...todoObj, done}
+					}
+					return todoObj
+				})
+			},
+			// 更新一个todo，用index去更新
+			updateTodoIndex(index,done){
+				this.todos[index].done = done
+			}
+		}
+	}
 </script>
 
 <style>
-    .welcome{
-        background-color: gray;
-    }
+	/*base*/
+	body {
+	background: #fff;
+	}
+
+	.btn {
+	display: inline-block;
+	padding: 4px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	border-radius: 4px;
+	}
+
+	.btn-danger {
+	color: #fff;
+	background-color: #da4f49;
+	border: 1px solid #bd362f;
+	}
+
+	.btn-danger:hover {
+	color: #fff;
+	background-color: #bd362f;
+	}
+
+	.btn:focus {
+	outline: none;
+	}
+
+	.todo-container {
+	width: 600px;
+	margin: 0 auto;
+	}
+	.todo-container .todo-wrap {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	}
 </style>
