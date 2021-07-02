@@ -28,9 +28,10 @@
                     // 根据用户的输入生成一个todo对象
                     const todoObj = {id:uuid(),name:this.name,done:false}
                     // 通知App在data中添加一个todo
-                    this.addTodo(todoObj)
+                    // this.addTodo(todoObj)
+                    this.$emit('add-todo',todoObj)
                     // 清空输入
-                    event.target.value=""
+                    // event.target.value=""
                     this.name=""
                 }
             }
