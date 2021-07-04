@@ -1,25 +1,15 @@
 <template>
-	<div class="app">
-		<h2>我是App组件</h2>
-		<Demo1 />
-		<Demo2 />
-	</div>
+    <div class="app">
+        App
+    </div>
 </template>
 
 <script>
-	import Demo1 from './components/Demo1.vue'
-	import Demo2 from './components/Demo2.vue'
-	export default {
-		name:'App',
-		components:{Demo1,Demo2},
-
-	}
-
+    export default {
+        name:'App'
+    }
 </script>
 
 <style scoped>
-	.app{
-		background-color: lightsalmon;
-		padding: 10px;
-	}
+    
 </style>
