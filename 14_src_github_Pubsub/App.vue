@@ -12,6 +12,6 @@
     import Search from './components/Search'
     export default {
         name:'App',
-        components:{Search, List},
+        components:{Search, List}
     }
 </script>
